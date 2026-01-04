@@ -1,6 +1,6 @@
 # Deal Hub - Enterprise E-Commerce Application
 
-A production-grade e-commerce application built with Next.js 16 (App Router), TypeScript, Redux Toolkit, NextAuth, TailwindCSS + shadcn/ui, Framer Motion, and full internationalization support for Arabic (RTL) and English (LTR).
+A production-grade e-commerce application built with Next.js 16 (App Router), TypeScript, NextAuth, TailwindCSS + shadcn/ui, Framer Motion, and full internationalization support for Arabic (RTL) and English (LTR).
 
 ## 🚀 Tech Stack
 
@@ -8,7 +8,7 @@ A production-grade e-commerce application built with Next.js 16 (App Router), Ty
 |------------|---------|
 | **Next.js 16** | React framework with App Router |
 | **TypeScript** | Type-safe development |
-| **Redux Toolkit** | Client state management |
+| **React Context** | Client state management |
 | **NextAuth v5** | Authentication layer |
 | **Tailwind CSS 4** | Utility-first styling |
 | **Framer Motion** | Subtle UI animations |
@@ -37,7 +37,7 @@ src/
 │   ├── api/                # HTTP client & endpoints
 │   ├── auth/               # NextAuth configuration
 │   ├── config/             # App configuration
-│   └── store/              # Redux store
+│   └── providers/          # Context providers
 ├── features/               # Feature modules
 │   ├── auth/               # Authentication
 │   ├── products/           # Products
@@ -51,8 +51,7 @@ src/
 │   ├── ui/                 # UI components
 │   ├── lib/                # Utilities
 │   ├── hooks/              # Custom hooks
-│   ├── motion/             # Animation primitives
-│   └── store/              # Shared store slices
+│   └── motion/             # Animation primitives
 ├── entities/               # Zod schemas & types
 ├── i18n/                   # Internationalization
 └── messages/               # Translation files
@@ -180,9 +179,9 @@ npm run test
 ```
 
 Tests cover:
-- Redux slices
 - Business logic
 - Component rendering
+- API utilities
 
 ## 📱 Accessibility
 
