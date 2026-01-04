@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Deal Hub - Enterprise E-Commerce Application
 
-## Getting Started
+A production-grade e-commerce application built with Next.js 16 (App Router), TypeScript, Redux Toolkit, NextAuth, TailwindCSS + shadcn/ui, Framer Motion, and full internationalization support for Arabic (RTL) and English (LTR).
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | React framework with App Router |
+| **TypeScript** | Type-safe development |
+| **Redux Toolkit** | Client state management |
+| **NextAuth v5** | Authentication layer |
+| **Tailwind CSS 4** | Utility-first styling |
+| **Framer Motion** | Subtle UI animations |
+| **next-intl** | Internationalization (i18n) |
+| **Zod** | Schema validation |
+| **Vitest** | Unit testing |
+| **Axios** | HTTP client |
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── [locale]/           # Locale-based routing
+│   │   ├── products/       # Products pages
+│   │   ├── categories/     # Categories pages
+│   │   ├── brands/         # Brands pages
+│   │   ├── cart/           # Cart page
+│   │   ├── wishlist/       # Wishlist page
+│   │   ├── checkout/       # Checkout flow
+│   │   ├── orders/         # Orders pages
+│   │   ├── profile/        # Profile pages
+│   │   └── login/          # Auth pages
+│   └── api/                # API routes
+├── core/                   # Core infrastructure
+│   ├── api/                # HTTP client & endpoints
+│   ├── auth/               # NextAuth configuration
+│   ├── config/             # App configuration
+│   └── store/              # Redux store
+├── features/               # Feature modules
+│   ├── auth/               # Authentication
+│   ├── products/           # Products
+│   ├── categories/         # Categories
+│   ├── brands/             # Brands
+│   ├── cart/               # Cart
+│   ├── wishlist/           # Wishlist
+│   ├── orders/             # Orders
+│   └── addresses/          # User addresses
+├── shared/                 # Shared utilities
+│   ├── ui/                 # UI components
+│   ├── lib/                # Utilities
+│   ├── hooks/              # Custom hooks
+│   ├── motion/             # Animation primitives
+│   └── store/              # Shared store slices
+├── entities/               # Zod schemas & types
+├── i18n/                   # Internationalization
+└── messages/               # Translation files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 API Integration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Base URL:** `https://ecommerce.routemisr.com`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Endpoints Covered (33 total)
 
-## Learn More
+| Feature | Endpoints |
+|---------|-----------|
+| Auth | 8 (signup, signin, forgot/reset password, change password, update profile, verify token) |
+| Products | 2 (list with full query params, details) |
+| Categories | 3 (list, details, subcategories) |
+| SubCategories | 2 (list, details) |
+| Brands | 2 (list, details) |
+| Cart | 5 (add, get, update, remove, clear) |
+| Wishlist | 3 (add, remove, get) |
+| Addresses | 4 (add, remove, get one, get all) |
+| Orders | 4 (create cash, checkout session, get all, get user orders) |
 
-To learn more about Next.js, take a look at the following resources:
+### Query Parameters Utilized
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Products listing supports full filtering:
+- `limit`, `page` - Pagination
+- `sort` - Sorting (price, rating, date, etc.)
+- `keyword` - Search
+- `brand`, `category[in]` - Filtering
+- `price[gte]`, `price[lte]` - Price range
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏃 Getting Started
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js 18+
+- npm or yarn
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+```bash
+# Clone the repository
+git clone <repo-url>
+cd deal-hub
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your values
+
+# Run development server
+npm run dev
+```
+
+### Environment Variables
+
+```env
+NEXT_PUBLIC_API_BASE_URL=https://ecommerce.routemisr.com
+AUTH_SECRET=your-secret-key
+AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_NAME=Deal Hub
+```
+
+## 📜 Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run test         # Run tests
+npm run test:coverage # Run tests with coverage
+```
+
+## 🌍 Internationalization
+
+Supports English and Arabic with full RTL/LTR layout switching:
+
+- `/en/*` - English (LTR)
+- `/ar/*` - Arabic (RTL)
+
+Translations are in `src/messages/{locale}.json`.
+
+## 🎨 Design System
+
+Built on Tailwind CSS 4 with design tokens:
+
+- Consistent color palette (light/dark modes)
+- Typography scale
+- Spacing system
+- Component variants (shadcn/ui style)
+
+## 🔒 Security
+
+- NextAuth for authentication
+- Protected routes via middleware
+- Secure session handling
+- Input validation with Zod
+- Security headers configured
+
+## ⚡ Performance
+
+- Server Components for SSR
+- Streaming with loading states
+- Image optimization
+- Route prefetching
+- Memoization where needed
+
+## 📋 Coding Conventions
+
+- Feature-based modular architecture
+- No business logic in UI components
+- Type-safe API responses (Zod validation)
+- Explicit error/loading/empty state handling
+- Optimistic updates for cart/wishlist
+
+## 🧪 Testing
+
+```bash
+npm run test
+```
+
+Tests cover:
+- Redux slices
+- Business logic
+- Component rendering
+
+## 📱 Accessibility
+
+- ARIA labels and roles
+- Keyboard navigation
+- Focus management
+- Semantic HTML
+
+---
+
+Built with ❤️ for enterprise e-commerce
