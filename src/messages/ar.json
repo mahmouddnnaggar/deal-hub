@@ -92,7 +92,10 @@
     "alreadyHaveAccount": "لديك حساب بالفعل؟",
     "loginSuccess": "مرحباً بعودتك!",
     "registerSuccess": "تم إنشاء الحساب بنجاح!",
-    "logoutSuccess": "تم تسجيل الخروج بنجاح"
+    "logoutSuccess": "تم تسجيل الخروج بنجاح",
+    "or": "أو",
+    "registerDescription": "أنشئ حسابك للبدء في التسوق",
+    "loginDescription": "سجل الدخول إلى حسابك لمتابعة التسوق"
   },
   "product": {
     "price": "السعر",

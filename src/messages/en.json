@@ -92,7 +92,10 @@
     "alreadyHaveAccount": "Already have an account?",
     "loginSuccess": "Welcome back!",
     "registerSuccess": "Account created successfully!",
-    "logoutSuccess": "Logged out successfully"
+    "logoutSuccess": "Logged out successfully",
+    "or": "or",
+    "registerDescription": "Create your account to start shopping",
+    "loginDescription": "Sign in to your account to continue shopping"
   },
   "product": {
     "price": "Price",
