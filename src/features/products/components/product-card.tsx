@@ -55,91 +55,104 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <InteractiveCard className="group overflow-hidden h-full flex flex-col">
-      {/* Image */}
-      <Link href={ROUTES.PRODUCTS.DETAILS(product._id)} className="block">
-        <div className="relative aspect-square overflow-hidden bg-muted">
+    <InteractiveCard className="group relative bg-card rounded-2xl border border-border/50 overflow-hidden h-full flex flex-col transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+      {/* Image Container */}
+      <div className="relative aspect-[4/5] overflow-hidden bg-muted flex items-center justify-center">
+        <Link href={ROUTES.PRODUCTS.DETAILS(product._id)} className="w-full h-full block">
           <Image
             src={product.imageCover}
             alt={product.title}
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
-          
-          {/* Discount Badge */}
-          {hasDiscount && (
-            <span className="absolute top-2 start-2 bg-destructive text-destructive-foreground text-xs font-medium px-2 py-1 rounded-md">
-              -{discount}% {t('product.discount')}
-            </span>
-          )}
+        </Link>
+        
+        {/* Badges Overlay */}
+        <div className="absolute top-3 inset-x-3 flex justify-between items-start pointer-events-none">
+          <div className="flex flex-col gap-2">
+            {product.priceAfterDiscount !== undefined && product.priceAfterDiscount !== null && product.priceAfterDiscount > 0 && (
+              <span className="bg-destructive/90 backdrop-blur-md text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full shadow-lg">
+                {discount}% {t('product.discount')}
+              </span>
+            )}
+            {product.ratingsAverage >= 4.8 && (
+              <span className="bg-primary/90 backdrop-blur-md text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1">
+                <Star className="w-3 h-3 fill-current" />
+                Featured
+              </span>
+            )}
+          </div>
 
-          {/* Wishlist Button */}
           <button
             onClick={handleToggleWishlist}
             className={cn(
-              'absolute top-2 end-2 p-2 rounded-full transition-all cursor-pointer',
+              'p-2.5 rounded-full backdrop-blur-md transition-all duration-300 pointer-events-auto border border-white/20 shadow-xl',
               inWishlist 
-                ? 'bg-red-500 text-white' 
-                : 'bg-background/90 backdrop-blur hover:bg-primary hover:text-primary-foreground'
+                ? 'bg-red-500 text-white scale-110' 
+                : 'bg-white/80 dark:bg-black/40 text-foreground hover:bg-primary hover:text-primary-foreground hover:scale-110'
             )}
             aria-label={t('product.addToWishlist')}
           >
             <Heart className={cn('w-4 h-4', inWishlist && 'fill-current')} />
           </button>
         </div>
-      </Link>
+
+        {/* Quick Actions Overlay */}
+        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+          <Button 
+            className="w-full bg-white text-black hover:bg-primary hover:text-white border-none shadow-xl rounded-xl py-6 group/btn"
+            onClick={handleAddToCart}
+          >
+            <ShoppingCart className="w-4 h-4 mr-2 transition-transform group-hover/btn:scale-120" />
+            <span className="font-semibold">{t('product.addToCart')}</span>
+          </Button>
+        </div>
+      </div>
 
       {/* Content */}
-      <CardContent className="flex-1 flex flex-col p-4">
-        {/* Category */}
-        <span className="text-xs text-muted-foreground mb-1">
-          {product.category.name}
-        </span>
+      <CardContent className="flex-1 flex flex-col p-5">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-muted-foreground/80">
+            {product.category.name}
+          </span>
+          <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-500 border border-amber-500/20">
+            <Star className="w-3 h-3 fill-current" />
+            <span className="text-[11px] font-bold">{formatRating(product.ratingsAverage)}</span>
+          </div>
+        </div>
 
-        {/* Title */}
-        <Link href={ROUTES.PRODUCTS.DETAILS(product._id)}>
-          <h3 className="font-medium line-clamp-2 hover:text-primary transition-colors mb-2">
+        <Link href={ROUTES.PRODUCTS.DETAILS(product._id)} className="group/title inline-block">
+          <h3 className="font-semibold text-base leading-tight line-clamp-2 mb-3 group-hover/title:text-primary transition-colors duration-300">
             {product.title}
           </h3>
         </Link>
 
-        {/* Rating */}
-        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
-          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-          <span>{formatRating(product.ratingsAverage)}</span>
-          <span>({product.ratingsQuantity})</span>
-        </div>
-
-        {/* Price & Add to Cart */}
-        <div className="mt-auto flex items-center justify-between gap-2">
+        {/* Price & Rating Footer */}
+        <div className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between">
           <div className="flex flex-col">
             {hasDiscount ? (
-              <>
-                <span className="text-lg font-bold text-primary">
+              <div className="flex flex-wrap items-baseline gap-1.5">
+                <span className="text-xl font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent">
                   {formatPrice(product.priceAfterDiscount!)}
                 </span>
-                <span className="text-sm text-muted-foreground line-through">
+                <span className="text-xs text-muted-foreground/60 line-through decoration-1">
                   {formatPrice(product.price)}
                 </span>
-              </>
+              </div>
             ) : (
-              <span className="text-lg font-bold">
+              <span className="text-xl font-extrabold">
                 {formatPrice(product.price)}
               </span>
             )}
           </div>
-
-          <Button 
-            size="icon" 
-            variant="secondary" 
-            aria-label={t('product.addToCart')}
-            onClick={handleAddToCart}
-          >
-            <ShoppingCart className="w-4 h-4" />
-          </Button>
+          
+          <div className="text-[10px] font-medium text-muted-foreground/70 bg-muted/50 px-2 py-1 rounded-md">
+            {product.ratingsQuantity} {t('product.reviews') || 'reviews'}
+          </div>
         </div>
       </CardContent>
     </InteractiveCard>
   );
 }
+

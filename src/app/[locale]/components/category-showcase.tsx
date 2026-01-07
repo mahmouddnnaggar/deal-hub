@@ -137,7 +137,7 @@ export function CategoryShowcase() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {categories.map((category, index) => {
             const hasImageError = failedImages.has(category._id);
@@ -147,13 +147,11 @@ export function CategoryShowcase() {
               <motion.div key={category._id} variants={itemVariants}>
                 <Link
                   href={ROUTES.CATEGORIES.DETAILS(category._id)}
-                  className="block group"
+                  className="block group relative"
                 >
                   <div
                     className={cn(
-                      'relative aspect-square overflow-hidden rounded-2xl',
-                      'bg-card border transition-all duration-300',
-                      'group-hover:shadow-xl group-hover:border-primary/20'
+                      'relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted border border-border/40 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2'
                     )}
                   >
                     {/* Image or Fallback */}
@@ -174,37 +172,33 @@ export function CategoryShowcase() {
                           alt={category.name}
                           fill
                           sizes="(max-width: 768px) 50vw, 25vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-115"
                           onError={() => handleImageError(category._id)}
                         />
                       )}
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      
+                      {/* Decorative Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     </div>
 
-                    {/* Content */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-4">
-                      <motion.h3
-                        className="text-white font-semibold text-lg md:text-xl"
-                        initial={{ y: 0 }}
-                        whileHover={{ y: -4 }}
-                      >
-                        {category.name}
-                      </motion.h3>
-                      <motion.span
-                        className="text-white/70 text-sm flex items-center gap-1 mt-1"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        {t('common.viewAll')}
-                        <motion.span
-                          animate={{ x: [0, 3, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          →
-                        </motion.span>
-                      </motion.span>
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                      <div className="space-y-1.5 transition-transform duration-500 group-hover:-translate-y-2">
+                        <h3 className="text-white font-bold text-xl leading-tight">
+                          {category.name}
+                        </h3>
+                        <div className="flex items-center gap-2 overflow-hidden">
+                          <span className="text-white/60 text-xs font-medium uppercase tracking-wider opacity-0 -translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0">
+                            {t('common.viewAll')}
+                          </span>
+                          <div className="h-0.5 w-0 bg-primary group-hover:w-8 transition-all duration-500" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Glassmorphic Badge */}
+                    <div className="absolute top-4 end-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 scale-50 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100">
+                      <ArrowRight className="w-5 h-5 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                     </div>
                   </div>
                 </Link>

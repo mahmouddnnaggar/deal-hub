@@ -7,3 +7,4 @@ export { FeaturedProducts } from './featured-products';
 export { PromoBanners } from './promo-banners';
 export { CategoryShowcase } from './category-showcase';
 export { WhyShopWithUs } from './why-shop-with-us';
+export { BrandsMarquee } from './brands-marquee';

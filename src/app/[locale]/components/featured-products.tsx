@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n';
 import { ROUTES } from '@/core/config';
-import { Button } from '@/shared/ui';
+import { Button, ProductCardSkeleton } from '@/shared/ui';
 import { ProductCard } from '@/features/products/components/product-card';
 import { productsApi } from '@/features/products/api/products.api';
 import type { Product } from '@/entities';
@@ -82,15 +82,21 @@ export function FeaturedProducts() {
     return (
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container px-4">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="h-8 w-48 bg-muted animate-pulse rounded" />
+          <div className="flex items-center gap-4 mb-10">
+            <div className="p-2 bg-muted animate-pulse rounded-lg w-10 h-10" />
+            <div className="space-y-2">
+              <div className="h-8 w-48 bg-muted animate-pulse rounded" />
+              <div className="h-4 w-64 bg-muted animate-pulse rounded" />
+            </div>
           </div>
-          <div className="flex gap-6 overflow-hidden">
+          <div className="flex gap-5 overflow-hidden">
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="min-w-[280px] h-[380px] bg-muted animate-pulse rounded-xl"
-              />
+                className="w-[260px] md:w-[280px] flex-shrink-0"
+              >
+                <ProductCardSkeleton />
+              </div>
             ))}
           </div>
         </div>

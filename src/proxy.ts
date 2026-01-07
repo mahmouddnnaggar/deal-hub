@@ -5,7 +5,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { routing } from '@/i18n/navigation';
-import { PROTECTED_ROUTES } from '@/core/config';
+import { PROTECTED_ROUTES, AUTH_ROUTES } from '@/core/config';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -43,9 +43,15 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Note: We intentionally do NOT redirect authenticated users away from auth routes
-  // This avoids false positives from stale/invalid tokens and lets the auth pages
-  // handle their own redirect logic client-side after proper session validation
+  // Redirect authenticated users away from auth routes (login, register, etc.)
+  const isAuthRoute = AUTH_ROUTES.some((route) =>
+    pathnameWithoutLocale.startsWith(route)
+  );
+  
+  if (isAuthRoute && isAuthenticated) {
+    const homeUrl = new URL(`/${locale}`, request.url);
+    return NextResponse.redirect(homeUrl);
+  }
 
   // Apply i18n middleware
   return intlMiddleware(request);

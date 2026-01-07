@@ -20,15 +20,21 @@ function Skeleton({ className, ...props }: SkeletonProps) {
 // Product card skeleton
 function ProductCardSkeleton() {
   return (
-    <div className="rounded-xl border bg-card p-4 space-y-4">
-      <Skeleton className="aspect-square w-full rounded-lg" />
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-3/4" />
-        <Skeleton className="h-4 w-1/2" />
-      </div>
-      <div className="flex justify-between items-center">
-        <Skeleton className="h-6 w-20" />
-        <Skeleton className="h-8 w-8 rounded-full" />
+    <div className="rounded-2xl border bg-card overflow-hidden h-full flex flex-col">
+      <Skeleton className="aspect-[4/5] w-full" />
+      <div className="p-5 space-y-4 flex-1 flex flex-col">
+        <div className="flex justify-between items-center">
+          <Skeleton className="h-3 w-1/4 rounded-full" />
+          <Skeleton className="h-5 w-10 rounded-full" />
+        </div>
+        <div className="space-y-2">
+          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-5 w-4/5" />
+        </div>
+        <div className="mt-auto pt-4 border-t flex justify-between items-center">
+          <Skeleton className="h-6 w-24" />
+          <Skeleton className="h-4 w-12" />
+        </div>
       </div>
     </div>
   );
@@ -105,6 +111,69 @@ function ProductDetailsSkeleton() {
   );
 }
 
+// Filter bar skeleton
+function FilterBarSkeleton() {
+  return (
+    <div className="space-y-8 rounded-2xl border bg-card p-6">
+      <div className="space-y-4">
+        <Skeleton className="h-6 w-1/2" />
+        <div className="space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={i} className="h-4 w-full" />
+          ))}
+        </div>
+      </div>
+      <div className="space-y-4">
+        <Skeleton className="h-6 w-1/3" />
+        <div className="space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={i} className="h-4 w-full" />
+          ))}
+        </div>
+      </div>
+      <div className="space-y-4">
+        <Skeleton className="h-6 w-2/3" />
+        <div className="space-y-4">
+          <Skeleton className="h-6 w-full rounded-full" />
+          <div className="flex justify-between">
+            <Skeleton className="h-8 w-16" />
+            <Skeleton className="h-8 w-16" />
+          </div>
+        </div>
+      </div>
+      <Skeleton className="h-10 w-full rounded-xl" />
+    </div>
+  );
+}
+
+// Products page skeleton
+function ProductsPageSkeleton() {
+  return (
+    <div className="container py-8">
+      <div className="flex flex-col gap-6">
+        {/* Header Skeleton */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-2">
+            <Skeleton className="h-10 w-48" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+          <Skeleton className="h-10 w-40 rounded-lg" />
+        </div>
+
+        {/* Layout Skeleton */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          <aside className="w-full lg:w-64 shrink-0">
+            <FilterBarSkeleton />
+          </aside>
+          <div className="flex-1">
+            <ProductGridSkeleton count={9} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Table row skeleton
 function TableRowSkeleton({ columns = 5 }: { columns?: number }) {
   return (
@@ -126,5 +195,7 @@ export {
   BrandCardSkeleton,
   CartItemSkeleton,
   ProductDetailsSkeleton,
+  FilterBarSkeleton,
+  ProductsPageSkeleton,
   TableRowSkeleton,
 };

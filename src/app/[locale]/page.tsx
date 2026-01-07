@@ -4,6 +4,7 @@ import {
   FeaturedProducts,
   PromoBanners,
   CategoryShowcase,
+  BrandsMarquee,
 } from './components';
 
 interface HomePageProps {
@@ -22,6 +23,9 @@ function HomeContent() {
     <main className="flex-1">
       {/* Hero Slider Section */}
       <HeroSlider />
+
+      {/* Brands Marquee Section */}
+      <BrandsMarquee />
 
       {/* Featured Products Section */}
       <FeaturedProducts />

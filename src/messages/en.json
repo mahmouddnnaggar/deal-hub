@@ -72,7 +72,8 @@
     "profile": "Profile",
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "search": "Search products..."
   },
   "auth": {
     "login": "Login",

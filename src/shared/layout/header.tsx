@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, ShoppingCart, Heart, User, Sun, Moon, 
-  Globe, ChevronDown, Search, Sparkles
+  Globe, ChevronDown, UserCircle, LogOut, Package
 } from 'lucide-react';
 import { Link } from '@/i18n';
 import { ROUTES } from '@/core/config';
@@ -16,6 +16,8 @@ import { useCart } from '@/features/cart/context';
 import { useWishlist } from '@/features/wishlist/context';
 import { Button } from '@/shared/ui';
 import { cn } from '@/shared/lib';
+import { useSession, signOut } from 'next-auth/react';
+
 
 export function Header() {
   const t = useTranslations();
@@ -26,12 +28,15 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const { items: cartItems } = useCart();
   const { items: wishlistItems } = useWishlist();
+  const { data: session, status } = useSession();
   const cartCount = cartItems.length;
   const wishlistCount = wishlistItems.length;
+  const isAuthenticated = status === 'authenticated' && !!session;
 
   useEffect(() => {
     setMounted(true);
@@ -51,6 +56,11 @@ export function Header() {
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  };
+
+  const handleLogout = async () => {
+    setUserMenuOpen(false);
+    await signOut({ callbackUrl: '/' });
   };
 
   const navLinks = [
@@ -175,6 +185,8 @@ export function Header() {
             </AnimatePresence>
           </div>
 
+
+
           {/* Theme Toggle */}
           <Button 
             variant="ghost" 
@@ -242,12 +254,69 @@ export function Header() {
           </Link>
 
           {/* Profile / Login */}
-          <Link 
-            href={ROUTES.AUTH.LOGIN}
-            className="p-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-          >
-            <User className="w-5 h-5" />
-          </Link>
+          {isAuthenticated ? (
+            <div className="relative">
+              <button
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                className="flex items-center gap-1 p-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+              >
+                <UserCircle className="w-5 h-5 text-primary" />
+                <ChevronDown className={cn(
+                  'w-3 h-3 transition-transform hidden sm:block',
+                  userMenuOpen && 'rotate-180'
+                )} />
+              </button>
+              <AnimatePresence>
+                {userMenuOpen && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-40" 
+                      onClick={() => setUserMenuOpen(false)} 
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute end-0 top-full mt-2 z-50 min-w-[160px] rounded-xl border bg-popover/95 backdrop-blur-xl p-1.5 shadow-xl"
+                    >
+                      <Link
+                        href={ROUTES.PROFILE.INDEX}
+                        onClick={() => setUserMenuOpen(false)}
+                        className="w-full px-3 py-2 text-sm rounded-lg text-start hover:bg-primary/10 transition-colors flex items-center gap-2"
+                      >
+                        <UserCircle className="w-4 h-4" />
+                        {t('nav.profile')}
+                      </Link>
+                      <Link
+                        href={ROUTES.ORDERS.LIST}
+                        onClick={() => setUserMenuOpen(false)}
+                        className="w-full px-3 py-2 text-sm rounded-lg text-start hover:bg-primary/10 transition-colors flex items-center gap-2"
+                      >
+                        <Package className="w-4 h-4" />
+                        {t('nav.orders')}
+                      </Link>
+                      <hr className="my-1.5 border-border/50" />
+                      <button
+                        onClick={handleLogout}
+                        className="w-full cursor-pointer px-3 py-2 text-sm rounded-lg text-start hover:bg-destructive/10 text-destructive transition-colors flex items-center gap-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        {t('nav.logout')}
+                      </button>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <Link 
+              href={ROUTES.AUTH.LOGIN}
+              className="p-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+            >
+              <User className="w-5 h-5" />
+            </Link>
+          )}
 
           {/* Mobile Menu Button */}
           <Button
@@ -279,9 +348,9 @@ export function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t bg-background/95 backdrop-blur-xl overflow-hidden"
+            className="md:hidden border-t bg-background/95 backdrop-blur-xl overflow-hidden px-4"
           >
-            <nav className="container py-4 flex flex-col gap-1">
+            <nav className="py-6 flex flex-col gap-1">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
