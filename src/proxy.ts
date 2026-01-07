@@ -1,5 +1,5 @@
 /**
- * Middleware for authentication and i18n routing
+ * Proxy for authentication and i18n routing
  */
 
 import createMiddleware from 'next-intl/middleware';
@@ -9,7 +9,7 @@ import { PROTECTED_ROUTES } from '@/core/config';
 
 const intlMiddleware = createMiddleware(routing);
 
-export default async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Get locale from pathname

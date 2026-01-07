@@ -151,7 +151,7 @@ Built on Tailwind CSS 4 with design tokens:
 ## 🔒 Security
 
 - NextAuth for authentication
-- Protected routes via middleware
+- Protected routes via proxy
 - Secure session handling
 - Input validation with Zod
 - Security headers configured
