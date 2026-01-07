@@ -98,14 +98,14 @@ export function ProductCard({ product }: ProductCardProps) {
           </button>
         </div>
 
-        {/* Quick Actions Overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+        {/* Quick Actions Overlay - Visible on mobile, hover-reveal on desktop */}
+        <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/70 via-black/40 to-transparent">
           <Button 
-            className="w-full bg-white text-black hover:bg-primary hover:text-white border-none shadow-xl rounded-xl py-6 group/btn"
+            className="w-full bg-white text-black hover:bg-primary hover:text-white border-none shadow-xl rounded-xl py-5 sm:py-6 group/btn"
             onClick={handleAddToCart}
           >
             <ShoppingCart className="w-4 h-4 mr-2 transition-transform group-hover/btn:scale-120" />
-            <span className="font-semibold">{t('product.addToCart')}</span>
+            <span className="font-semibold text-sm">{t('product.addToCart')}</span>
           </Button>
         </div>
       </div>

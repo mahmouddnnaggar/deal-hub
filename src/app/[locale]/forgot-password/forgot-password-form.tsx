@@ -13,7 +13,7 @@ import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Card
 
 const forgotPasswordSchema = z.object({ email: z.string().email('Invalid email address') });
 const verifyCodeSchema = z.object({ resetCode: z.string().min(1, 'Code is required') });
-const resetPasswordSchema = z.object({ email: z.string().email(), newPassword: z.string().min(6, 'Password must be at least 6 characters') });
+const resetPasswordSchema = z.object({ newPassword: z.string().min(6, 'Password must be at least 6 characters') });
 
 type Step = 'email' | 'code' | 'password' | 'success';
 

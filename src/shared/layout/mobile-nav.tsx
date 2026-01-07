@@ -26,11 +26,11 @@ export function MobileNav() {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] px-2 sm:px-4 pb-4 pointer-events-none">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] px-2 pb-3 pointer-events-none">
       <motion.nav 
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl flex items-center justify-between p-1 sm:p-1.5 pointer-events-auto"
+        className="bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl flex items-center justify-between p-1 pointer-events-auto"
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -38,23 +38,23 @@ export function MobileNav() {
             <Link 
               key={item.label}
               href={item.href}
-              className="relative flex flex-col items-center gap-0.5 py-1.5 sm:py-2 px-1.5 xs:px-2 sm:px-3 group flex-1"
+              className="relative flex flex-col items-center gap-0.5 py-1 px-1.5 sm:px-2 group flex-1 min-w-0"
             >
               <div className={cn(
-                "p-2.5 rounded-xl transition-all duration-300 relative",
+                "p-2 sm:p-2.5 rounded-xl transition-all duration-300 relative",
                 isActive 
                   ? "text-primary-foreground bg-primary shadow-lg shadow-primary/30" 
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
               )}>
-                <item.icon className="w-5 h-5" />
+                <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-destructive text-destructive-foreground text-[10px] flex items-center justify-center rounded-full font-black shadow-sm">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-destructive text-destructive-foreground text-[8px] sm:text-[10px] flex items-center justify-center rounded-full font-black shadow-sm">
                     {item.badge}
                   </span>
                 )}
               </div>
               <span className={cn(
-                "text-[9px] font-bold uppercase tracking-tight transition-colors",
+                "text-[8px] sm:text-[9px] font-bold uppercase tracking-tight transition-colors truncate max-w-full",
                 isActive ? "text-primary" : "text-muted-foreground"
               )}>
                 {item.label}

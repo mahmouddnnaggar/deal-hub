@@ -37,21 +37,21 @@ export function ProfilePageClient() {
           <h1 className="text-3xl font-bold mb-8">{t('profile.title')}</h1>
         </FadeIn>
 
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-4 gap-4 lg:gap-8">
           <FadeIn delay={0.1}>
             <Card className="h-fit">
-              <CardContent className="p-4">
-                <nav className="space-y-1">
+              <CardContent className="p-2 sm:p-4">
+                <nav className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible no-scrollbar">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-start transition-colors ${
+                      className={`flex items-center gap-2 lg:gap-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg text-start transition-colors whitespace-nowrap text-sm lg:text-base flex-shrink-0 lg:flex-shrink lg:w-full ${
                         activeTab === tab.id ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
                       }`}
                     >
-                      <tab.icon className="w-5 h-5" />
-                      {tab.label}
+                      <tab.icon className="w-4 h-4 lg:w-5 lg:h-5" />
+                      <span className="hidden xs:inline lg:inline">{tab.label}</span>
                     </button>
                   ))}
                 </nav>
