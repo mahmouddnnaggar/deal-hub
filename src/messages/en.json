@@ -24,7 +24,42 @@
     "fastDelivery": "Fast Delivery",
     "fastDeliveryDesc": "Quick and reliable shipping to your doorstep",
     "securePayment": "Secure Payment",
-    "securePaymentDesc": "Safe and encrypted payment processing"
+    "securePaymentDesc": "Safe and encrypted payment processing",
+    "featuredProducts": "Featured Products",
+    "featuredProductsDesc": "Handpicked products just for you",
+    "shopByCategory": "Shop by Category",
+    "shopByCategoryDesc": "Browse our wide range of categories",
+    "slider": {
+      "slide1": {
+        "title": "Discover Amazing Deals",
+        "description": "Shop the latest trends with up to 50% off on selected items. Free shipping on orders over $50.",
+        "cta": "Shop Now"
+      },
+      "slide2": {
+        "title": "New Arrivals Are Here",
+        "description": "Explore our fresh collection of premium products. Be the first to get the latest styles.",
+        "cta": "Explore Collection"
+      },
+      "slide3": {
+        "title": "Premium Quality Guaranteed",
+        "description": "Only the best products from trusted brands. Quality you can count on, every time.",
+        "cta": "View Products"
+      }
+    },
+    "promo": {
+      "sale": {
+        "title": "Up to 50% Off",
+        "description": "Huge savings on electronics, fashion, and more"
+      },
+      "newArrivals": {
+        "title": "New Arrivals",
+        "description": "Fresh styles added daily to our collection"
+      },
+      "freeShipping": {
+        "title": "Free Shipping",
+        "description": "On all orders over $50 nationwide"
+      }
+    }
   },
   "nav": {
     "home": "Home",

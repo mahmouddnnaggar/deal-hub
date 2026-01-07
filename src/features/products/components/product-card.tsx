@@ -78,7 +78,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <button
             onClick={handleToggleWishlist}
             className={cn(
-              'absolute top-2 end-2 p-2 rounded-full transition-all',
+              'absolute top-2 end-2 p-2 rounded-full transition-all cursor-pointer',
               inWishlist 
                 ? 'bg-red-500 text-white' 
                 : 'bg-background/90 backdrop-blur hover:bg-primary hover:text-primary-foreground'

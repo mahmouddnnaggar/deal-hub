@@ -1,4 +1,4 @@
-import { ProductGridSkeleton, ProductDetailsSkeleton } from '@/shared/ui';
+import { ProductGridSkeleton } from '@/shared/ui';
 
 export default function ProductsLoading() {
   return (
