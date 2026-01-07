@@ -50,8 +50,8 @@ export function FeaturedProducts() {
       try {
         const response = await productsApi.getProducts({ limit: 8, sort: '-ratingsAverage' });
         setProducts(response.data);
-      } catch (error) {
-        console.error('Failed to fetch featured products:', error);
+      } catch {
+        // Silent fail - products will remain empty
       } finally {
         setLoading(false);
       }

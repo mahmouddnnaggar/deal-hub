@@ -30,6 +30,8 @@ export function Header() {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const { items: cartItems } = useCart();
   const { items: wishlistItems } = useWishlist();
@@ -42,12 +44,30 @@ export function Header() {
     setMounted(true);
     
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 20);
+      
+      // Only hide/show after scrolling past 100px threshold
+      if (currentScrollY > 100) {
+        // Scrolling down - hide header
+        if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 5) {
+          setHidden(true);
+        }
+        // Scrolling up - show header
+        else if (currentScrollY < lastScrollY && lastScrollY - currentScrollY > 5) {
+          setHidden(false);
+        }
+      } else {
+        setHidden(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const handleLocaleChange = (newLocale: string) => {
     router.replace(pathname, { locale: newLocale });
@@ -73,8 +93,8 @@ export function Header() {
   return (
     <motion.header 
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         scrolled 

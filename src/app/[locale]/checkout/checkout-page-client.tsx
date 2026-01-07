@@ -118,8 +118,7 @@ export function CheckoutPageClient() {
 
       // Redirect to orders page
       router.push(ROUTES.ORDERS.LIST);
-    } catch (error) {
-      console.error('Failed to place order:', error);
+    } catch {
       alert('Failed to place order. Please try again.');
     } finally {
       setIsLoading(false);

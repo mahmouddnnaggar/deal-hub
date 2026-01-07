@@ -5,7 +5,7 @@
 
 import { type Variants, type Transition } from 'framer-motion';
 
-// Default easing curves
+
 export const easings = {
   smooth: [0.4, 0, 0.2, 1],
   smoothOut: [0, 0, 0.2, 1],
@@ -14,7 +14,7 @@ export const easings = {
   spring: { type: 'spring', stiffness: 300, damping: 30 },
 } as const;
 
-// Default transitions
+
 export const transitions: Record<string, Transition> = {
   fast: { duration: 0.15, ease: easings.smooth },
   normal: { duration: 0.3, ease: easings.smooth },
@@ -22,7 +22,7 @@ export const transitions: Record<string, Transition> = {
   spring: { type: 'spring', stiffness: 300, damping: 30 },
 };
 
-// Page transition variants
+
 export const pageVariants: Variants = {
   initial: { opacity: 0, y: 20 },
   enter: { 
@@ -37,7 +37,7 @@ export const pageVariants: Variants = {
   },
 };
 
-// Fade variants
+
 export const fadeVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { 
@@ -50,7 +50,7 @@ export const fadeVariants: Variants = {
   },
 };
 
-// Slide variants (for drawers, modals)
+
 export const slideVariants: Variants = {
   hidden: { x: '100%' },
   visible: { 
@@ -63,7 +63,7 @@ export const slideVariants: Variants = {
   },
 };
 
-// Slide from left (RTL support)
+
 export const slideFromLeftVariants: Variants = {
   hidden: { x: '-100%' },
   visible: { 
@@ -76,7 +76,7 @@ export const slideFromLeftVariants: Variants = {
   },
 };
 
-// Scale variants (for modals, buttons)
+
 export const scaleVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { 
@@ -91,7 +91,7 @@ export const scaleVariants: Variants = {
   },
 };
 
-// List item variants (for staggered lists)
+
 export const listItemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -101,7 +101,7 @@ export const listItemVariants: Variants = {
   },
 };
 
-// Container variants (for staggering children)
+
 export const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -113,7 +113,7 @@ export const containerVariants: Variants = {
   },
 };
 
-// Skeleton pulse animation
+
 export const skeletonVariants: Variants = {
   pulse: {
     opacity: [0.4, 0.7, 0.4],
@@ -125,14 +125,14 @@ export const skeletonVariants: Variants = {
   },
 };
 
-// Button hover/tap
+
 export const buttonVariants: Variants = {
   idle: { scale: 1 },
   hover: { scale: 1.02, transition: transitions.fast },
   tap: { scale: 0.98, transition: transitions.fast },
 };
 
-// Card hover
+
 export const cardVariants: Variants = {
   idle: { y: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' },
   hover: { 

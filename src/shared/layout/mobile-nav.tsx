@@ -26,11 +26,11 @@ export function MobileNav() {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] px-4 pb-4 pointer-events-none">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] px-2 sm:px-4 pb-4 pointer-events-none">
       <motion.nav 
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl flex items-center justify-around p-1.5 pointer-events-auto"
+        className="bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-xl flex items-center justify-between p-1 sm:p-1.5 pointer-events-auto"
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -38,7 +38,7 @@ export function MobileNav() {
             <Link 
               key={item.label}
               href={item.href}
-              className="relative flex flex-col items-center gap-0.5 py-2 px-3 group"
+              className="relative flex flex-col items-center gap-0.5 py-1.5 sm:py-2 px-1.5 xs:px-2 sm:px-3 group flex-1"
             >
               <div className={cn(
                 "p-2.5 rounded-xl transition-all duration-300 relative",

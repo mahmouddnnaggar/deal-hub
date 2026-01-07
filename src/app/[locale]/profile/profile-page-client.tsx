@@ -101,7 +101,6 @@ function AddressesTab({ t }: { t: any }) {
   });
 
   const onSubmit = async (data: AddressForm) => {
-    console.log(data);
     setShowForm(false);
     reset();
   };

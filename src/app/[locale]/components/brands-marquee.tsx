@@ -19,8 +19,8 @@ export function BrandsMarquee() {
       try {
         const response = await brandsApi.getBrands({ limit: 20 });
         setBrands(response.data);
-      } catch (error) {
-        console.error('Failed to fetch brands:', error);
+      } catch {
+        // Silent fail - brands will remain empty
       } finally {
         setLoading(false);
       }

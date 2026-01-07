@@ -36,6 +36,7 @@ function Pagination({
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
+
     // Always show first page
     pages.push(1);
 
@@ -119,7 +120,7 @@ function Pagination({
   );
 }
 
-// Pagination info component
+
 interface PaginationInfoProps {
   currentPage: number;
   totalPages: number;

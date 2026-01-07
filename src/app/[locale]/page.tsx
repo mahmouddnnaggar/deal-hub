@@ -21,19 +21,10 @@ export default async function HomePage({ params }: HomePageProps) {
 function HomeContent() {
   return (
     <main className="flex-1">
-      {/* Hero Slider Section */}
       <HeroSlider />
-
-      {/* Brands Marquee Section */}
       <BrandsMarquee />
-
-      {/* Featured Products Section */}
       <FeaturedProducts />
-
-      {/* Promo Banners Section */}
       <PromoBanners />
-
-      {/* Category Showcase Section */}
       <CategoryShowcase />
     </main>
   );
@@ -42,3 +33,4 @@ function HomeContent() {
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'ar' }];
 }
+

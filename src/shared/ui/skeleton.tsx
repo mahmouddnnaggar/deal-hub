@@ -17,7 +17,7 @@ function Skeleton({ className, ...props }: SkeletonProps) {
   );
 }
 
-// Product card skeleton
+
 function ProductCardSkeleton() {
   return (
     <div className="rounded-2xl border bg-card overflow-hidden h-full flex flex-col">
@@ -40,7 +40,7 @@ function ProductCardSkeleton() {
   );
 }
 
-// Product grid skeleton
+
 function ProductGridSkeleton({ count = 12 }: { count?: number }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -51,7 +51,7 @@ function ProductGridSkeleton({ count = 12 }: { count?: number }) {
   );
 }
 
-// Category card skeleton
+
 function CategoryCardSkeleton() {
   return (
     <div className="rounded-xl border bg-card p-4 space-y-3">
@@ -61,7 +61,7 @@ function CategoryCardSkeleton() {
   );
 }
 
-// Brand card skeleton
+
 function BrandCardSkeleton() {
   return (
     <div className="rounded-xl border bg-card p-4">
@@ -70,7 +70,7 @@ function BrandCardSkeleton() {
   );
 }
 
-// Cart item skeleton
+
 function CartItemSkeleton() {
   return (
     <div className="flex gap-4 p-4 border-b">
@@ -84,7 +84,7 @@ function CartItemSkeleton() {
   );
 }
 
-// Product details skeleton
+
 function ProductDetailsSkeleton() {
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -111,7 +111,7 @@ function ProductDetailsSkeleton() {
   );
 }
 
-// Filter bar skeleton
+
 function FilterBarSkeleton() {
   return (
     <div className="space-y-8 rounded-2xl border bg-card p-6">
@@ -146,7 +146,7 @@ function FilterBarSkeleton() {
   );
 }
 
-// Products page skeleton
+
 function ProductsPageSkeleton() {
   return (
     <div className="container py-8">
@@ -174,7 +174,7 @@ function ProductsPageSkeleton() {
   );
 }
 
-// Table row skeleton
+
 function TableRowSkeleton({ columns = 5 }: { columns?: number }) {
   return (
     <tr className="border-b">

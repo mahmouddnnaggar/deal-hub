@@ -6,7 +6,7 @@
 import { z } from 'zod';
 import { createPaginatedResponseSchema, createSingleResponseSchema } from './api-response.schema';
 
-// Subcategory reference in product
+
 const productSubcategorySchema = z.object({
   _id: z.string(),
   name: z.string(),
@@ -14,7 +14,7 @@ const productSubcategorySchema = z.object({
   category: z.string(),
 });
 
-// Category reference in product
+
 const productCategorySchema = z.object({
   _id: z.string(),
   name: z.string(),
@@ -22,7 +22,7 @@ const productCategorySchema = z.object({
   image: z.string(),
 });
 
-// Brand reference in product
+
 const productBrandSchema = z.object({
   _id: z.string(),
   name: z.string(),
@@ -30,7 +30,7 @@ const productBrandSchema = z.object({
   image: z.string(),
 });
 
-// Full product schema with all fields
+
 export const productSchema = z.object({
   _id: z.string(),
   title: z.string(),
@@ -55,15 +55,15 @@ export const productSchema = z.object({
 
 export type Product = z.infer<typeof productSchema>;
 
-// Products list response with pagination
+
 export const productsResponseSchema = createPaginatedResponseSchema(productSchema);
 export type ProductsResponse = z.infer<typeof productsResponseSchema>;
 
-// Single product response
+
 export const productResponseSchema = createSingleResponseSchema(productSchema);
 export type ProductResponse = z.infer<typeof productResponseSchema>;
 
-// Product query parameters
+
 export interface ProductsQueryParams {
   limit?: number;
   page?: number;
@@ -76,7 +76,7 @@ export interface ProductsQueryParams {
   'category[in]'?: string;
 }
 
-// Product sort options
+
 export const PRODUCT_SORT_OPTIONS = [
   { value: '-createdAt', label: 'Newest' },
   { value: 'createdAt', label: 'Oldest' },

@@ -63,8 +63,8 @@ export function CategoryShowcase() {
       try {
         const response = await categoriesApi.getCategories({ limit: 8 });
         setCategories(response.data);
-      } catch (error) {
-        console.error('Failed to fetch categories:', error);
+      } catch {
+        // Silent fail - categories will remain empty
       } finally {
         setLoading(false);
       }
