@@ -55,7 +55,7 @@ function HeroSlideContent({ slide }: { slide: HeroSlide }) {
 
   return (
     <div
-      className={`relative h-[calc(100vh-66px-60px)] flex items-center justify-center bg-gradient-to-br ${slide.gradient}`}
+      className={`relative h-[calc(100dvh-66px-60px)] flex items-center justify-center bg-gradient-to-br ${slide.gradient}`}
     >
       {/* Decorative elements - organic shapes */}
       <div className="absolute inset-0 overflow-hidden">

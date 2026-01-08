@@ -35,7 +35,7 @@ export function BrandsMarquee() {
   const duplicatedBrands = [...brands, ...brands, ...brands];
 
   return (
-    <section className="relative py-2 overflow-hidden bg-background/50 backdrop-blur-sm">
+    <section className="relative h-[60px] overflow-hidden bg-background/50 backdrop-blur-sm flex items-center">
       {/* Edge Fades for Smooth Entrance/Exit */}
       <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
