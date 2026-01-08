@@ -57,34 +57,30 @@ function HeroSlideContent({ slide }: { slide: HeroSlide }) {
     <div
       className={`relative h-[calc(100vh-66px-60px)] flex items-center justify-center bg-gradient-to-br ${slide.gradient}`}
     >
-      {/* Decorative elements - static */}
+      {/* Decorative elements - organic shapes */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -start-1/4 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl opacity-40" />
-        <div className="absolute -bottom-1/2 -end-1/4 w-[500px] h-[500px] rounded-full bg-secondary/10 blur-3xl opacity-30" />
+        <div className="absolute -top-1/3 -start-1/5 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[100px] opacity-50" />
+        <div className="absolute -bottom-1/3 -end-1/5 w-[400px] h-[400px] rounded-full bg-secondary/8 blur-[80px] opacity-40" />
+        <div className="absolute top-1/4 end-1/4 w-[200px] h-[200px] rounded-full bg-primary/3 blur-[60px] opacity-30" />
       </div>
 
       <div className="container px-4 text-center relative z-10">
-        <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium bg-primary/10 text-primary rounded-full">
-          Deal Hub
-        </span>
-
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-[1.1]">
           {t(slide.titleKey)}
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+        <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed">
           {t(slide.descriptionKey)}
         </p>
 
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-3 justify-center">
           <Link href={slide.ctaLink}>
-            <Button size="lg" className="gap-2 shadow-lg shadow-primary/25">
+            <Button size="lg" className="gap-2 shadow-md shadow-primary/20 px-8">
               {t(slide.ctaKey)}
-              <span>→</span>
             </Button>
           </Link>
           <Link href={ROUTES.CATEGORIES.LIST}>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" className="px-6">
               {t('nav.categories')}
             </Button>
           </Link>

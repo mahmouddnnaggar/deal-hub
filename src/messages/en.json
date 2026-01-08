@@ -17,47 +17,47 @@
   },
   "home": {
     "welcomeTo": "Welcome to",
-    "heroDescription": "Discover amazing deals on the best products. Shop electronics, fashion, home & more with fast delivery.",
+    "heroDescription": "Quality products, honest prices. Find everything from electronics to fashion—delivered fast.",
     "whyShopWithUs": "Why Shop With Us",
     "qualityProducts": "Quality Products",
-    "qualityProductsDesc": "Curated selection of premium brands and products",
+    "qualityProductsDesc": "We pick only the good stuff from brands we trust",
     "fastDelivery": "Fast Delivery",
-    "fastDeliveryDesc": "Quick and reliable shipping to your doorstep",
+    "fastDeliveryDesc": "Get your order quickly—no waiting around",
     "securePayment": "Secure Payment",
-    "securePaymentDesc": "Safe and encrypted payment processing",
-    "featuredProducts": "Featured Products",
-    "featuredProductsDesc": "Handpicked products just for you",
-    "shopByCategory": "Shop by Category",
-    "shopByCategoryDesc": "Browse our wide range of categories",
+    "securePaymentDesc": "Your payment info stays safe with us",
+    "featuredProducts": "Worth checking out",
+    "featuredProductsDesc": "Products our customers keep coming back to",
+    "shopByCategory": "Browse by category",
+    "shopByCategoryDesc": "Find exactly what you're looking for",
     "slider": {
       "slide1": {
-        "title": "Discover Amazing Deals",
-        "description": "Shop the latest trends with up to 50% off on selected items. Free shipping on orders over $50.",
-        "cta": "Shop Now"
+        "title": "Find what you love",
+        "description": "Up to 50% off on selected items this week. Orders over $50 ship free.",
+        "cta": "Start shopping"
       },
       "slide2": {
-        "title": "New Arrivals Are Here",
-        "description": "Explore our fresh collection of premium products. Be the first to get the latest styles.",
-        "cta": "Explore Collection"
+        "title": "Just arrived",
+        "description": "Fresh picks from the brands you know. Check them out before they're gone.",
+        "cta": "See what's new"
       },
       "slide3": {
-        "title": "Premium Quality Guaranteed",
-        "description": "Only the best products from trusted brands. Quality you can count on, every time.",
-        "cta": "View Products"
+        "title": "Trusted quality",
+        "description": "Every product we sell meets our standards. No exceptions.",
+        "cta": "Shop now"
       }
     },
     "promo": {
       "sale": {
         "title": "Up to 50% Off",
-        "description": "Huge savings on electronics, fashion, and more"
+        "description": "Big savings on electronics, fashion, and more"
       },
       "newArrivals": {
-        "title": "New Arrivals",
-        "description": "Fresh styles added daily to our collection"
+        "title": "New This Week",
+        "description": "Fresh styles added to the shop"
       },
       "freeShipping": {
         "title": "Free Shipping",
-        "description": "On all orders over $50 nationwide"
+        "description": "On orders over $50"
       }
     }
   },

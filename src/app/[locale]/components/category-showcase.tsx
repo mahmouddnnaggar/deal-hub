@@ -110,18 +110,13 @@ export function CategoryShowcase() {
           transition={{ duration: 0.5 }}
           className="flex items-center justify-between mb-10"
         >
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Grid3X3 className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold">
-                {t('home.shopByCategory')}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('home.shopByCategoryDesc')}
-              </p>
-            </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold">
+              {t('home.shopByCategory')}
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1.5">
+              {t('home.shopByCategoryDesc')}
+            </p>
           </div>
           <Link href={ROUTES.CATEGORIES.LIST}>
             <Button variant="ghost" className="gap-1">

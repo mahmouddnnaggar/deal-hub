@@ -23,10 +23,10 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 bg-gradient-to-br from-primary/5 via-card to-purple-500/5 rounded-3xl p-8 md:p-12 border border-border shadow-sm">
             <div className="text-center lg:text-start space-y-2">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-                Join our premium community
+                Stay in the loop
               </h3>
               <p className="text-muted-foreground max-w-md">
-                Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+                Get notified about new arrivals and exclusive offers. No spam, we promise.
               </p>
             </div>
             <div className="flex w-full lg:w-fit gap-2">
@@ -57,7 +57,7 @@ export function Footer() {
               <span className="text-2xl font-black tracking-tighter text-foreground">DEAL HUB</span>
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground max-w-sm">
-              Your ultimate destination for premium products and exclusive deals. We bring the best of international brands right to your doorstep.
+              Good products, fair prices. We bring together quality brands and deliver them to your door.
             </p>
             <div className="flex items-center gap-3 pt-2">
               {[

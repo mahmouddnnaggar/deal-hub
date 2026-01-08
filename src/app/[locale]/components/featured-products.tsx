@@ -4,17 +4,16 @@
  * Featured Products Section - Horizontal product carousel
  */
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
-import { Link } from '@/i18n';
 import { ROUTES } from '@/core/config';
-import { Button, ProductCardSkeleton } from '@/shared/ui';
-import { ProductCard } from '@/features/products/components/product-card';
-import { productsApi } from '@/features/products/api/products.api';
 import type { Product } from '@/entities';
-import { cn } from '@/shared/lib';
+import { productsApi } from '@/features/products/api/products.api';
+import { ProductCard } from '@/features/products/components/product-card';
+import { Link } from '@/i18n';
+import { Button, ProductCardSkeleton } from '@/shared/ui';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -117,18 +116,13 @@ export function FeaturedProducts() {
           transition={{ duration: 0.5 }}
           className="flex items-center justify-between mb-10"
         >
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Sparkles className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold">
-                {t('home.featuredProducts')}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('home.featuredProductsDesc')}
-              </p>
-            </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+              {t('home.featuredProducts')}
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1.5">
+              {t('home.featuredProductsDesc')}
+            </p>
           </div>
 
           <div className="flex items-center gap-2">

@@ -62,14 +62,13 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.4, 0, 0.2, 1] as const,
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
@@ -92,13 +91,12 @@ export function PromoBanners() {
               <Link href={banner.link} className="block group">
                 <div
                   className={cn(
-                    'relative overflow-hidden rounded-2xl p-6 md:p-8 h-full min-h-[200px]',
+                    'relative overflow-hidden rounded-2xl p-6 md:p-8 h-full min-h-[180px]',
                     'bg-gradient-to-br backdrop-blur-xl',
-                    'border border-white/10 dark:border-white/5',
-                    'transition-all duration-500',
-                    'shadow-lg hover:shadow-2xl',
-                    banner.gradient,
-                    banner.glowColor
+                    'border border-border/50',
+                    'transition-all duration-300',
+                    'shadow-sm hover:shadow-lg',
+                    banner.gradient
                   )}
                 >
                   {/* Background decoration */}
