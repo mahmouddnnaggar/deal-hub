@@ -86,7 +86,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <motion.div
-            whileHover={{ scale: 1.05, rotate: 5 }}
+            whileHover={{ scale: 1.02, rotate: 2 }}
             transition={{ type: 'spring', stiffness: 400 }}
           >
             <Image
