@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     alternateLocale: 'ar_EG',
     siteName: 'Deal Hub',
   },
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({
