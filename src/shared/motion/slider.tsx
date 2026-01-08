@@ -1,11 +1,10 @@
 'use client';
 
 /**
- * Slider Component - Reusable carousel with Framer Motion
+ * Slider Component - Simple scroll-based carousel
  */
 
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/shared/lib';
 
@@ -19,21 +18,6 @@ interface SliderProps<T> {
   className?: string;
 }
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? '100%' : '-100%',
-    opacity: 0,
-  }),
-};
-
 export function Slider<T>({
   items,
   renderItem,
@@ -43,22 +27,29 @@ export function Slider<T>({
   showArrows = true,
   className,
 }: SliderProps<T>) {
-  const [[currentIndex, direction], setSlide] = useState([0, 0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const goToSlide = useCallback((index: number) => {
+    setCurrentIndex(index);
+    if (containerRef.current) {
+      const slideWidth = containerRef.current.offsetWidth;
+      containerRef.current.scrollTo({
+        left: index * slideWidth,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
 
   const paginate = useCallback(
-    (newDirection: number) => {
+    (direction: number) => {
       const newIndex =
-        (currentIndex + newDirection + items.length) % items.length;
-      setSlide([newIndex, newDirection]);
+        (currentIndex + direction + items.length) % items.length;
+      goToSlide(newIndex);
     },
-    [currentIndex, items.length]
+    [currentIndex, items.length, goToSlide]
   );
-
-  const goToSlide = (index: number) => {
-    const direction = index > currentIndex ? 1 : -1;
-    setSlide([index, direction]);
-  };
 
   // Auto-play
   useEffect(() => {
@@ -75,27 +66,26 @@ export function Slider<T>({
 
   return (
     <div
-      className={cn('relative overflow-hidden', className)}
+      className={cn('relative', className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <AnimatePresence initial={false} custom={direction} mode="wait">
-        <motion.div
-          key={currentIndex}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.3 },
-          }}
-          className="w-full"
-        >
-          {renderItem(items[currentIndex], currentIndex)}
-        </motion.div>
-      </AnimatePresence>
+      {/* Slides Container */}
+      <div
+        ref={containerRef}
+        className="flex overflow-x-hidden scroll-smooth"
+        style={{ scrollSnapType: 'x mandatory' }}
+      >
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className="w-full flex-shrink-0"
+            style={{ scrollSnapAlign: 'start' }}
+          >
+            {renderItem(item, index)}
+          </div>
+        ))}
+      </div>
 
       {/* Navigation Arrows */}
       {showArrows && items.length > 1 && (

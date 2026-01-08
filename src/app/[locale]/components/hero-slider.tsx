@@ -1,10 +1,9 @@
 'use client';
 
 /**
- * Hero Slider Component - Premium animated hero section
+ * Hero Slider Component - Simple hero section with pagination
  */
 
-import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n';
 import { ROUTES } from '@/core/config';
@@ -51,19 +50,6 @@ const heroSlides: HeroSlide[] = [
   },
 ];
 
-const textVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay,
-      ease: [0.4, 0, 0.2, 1] as const,
-    },
-  }),
-};
-
 function HeroSlideContent({ slide }: { slide: HeroSlide }) {
   const t = useTranslations();
 
@@ -71,81 +57,30 @@ function HeroSlideContent({ slide }: { slide: HeroSlide }) {
     <div
       className={`relative h-[calc(100vh-66px-60px)] flex items-center justify-center bg-gradient-to-br ${slide.gradient}`}
     >
-      {/* Decorative elements */}
+      {/* Decorative elements - static */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-1/2 -start-1/4 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-1/2 -end-1/4 w-[500px] h-[500px] rounded-full bg-secondary/10 blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.2, 0.4],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+        <div className="absolute -top-1/2 -start-1/4 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl opacity-40" />
+        <div className="absolute -bottom-1/2 -end-1/4 w-[500px] h-[500px] rounded-full bg-secondary/10 blur-3xl opacity-30" />
       </div>
 
       <div className="container px-4 text-center relative z-10">
-        <motion.span
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="inline-block px-4 py-1.5 mb-6 text-sm font-medium bg-primary/10 text-primary rounded-full"
-        >
+        <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium bg-primary/10 text-primary rounded-full">
           Deal Hub
-        </motion.span>
+        </span>
 
-        <motion.h1
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          custom={0.1}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-        >
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
           {t(slide.titleKey)}
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          custom={0.2}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
-        >
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
           {t(slide.descriptionKey)}
-        </motion.p>
+        </p>
 
-        <motion.div
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          custom={0.3}
-          className="flex flex-wrap gap-4 justify-center"
-        >
+        <div className="flex flex-wrap gap-4 justify-center">
           <Link href={slide.ctaLink}>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/25">
               {t(slide.ctaKey)}
-              <motion.span
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                →
-              </motion.span>
+              <span>→</span>
             </Button>
           </Link>
           <Link href={ROUTES.CATEGORIES.LIST}>
@@ -153,7 +88,7 @@ function HeroSlideContent({ slide }: { slide: HeroSlide }) {
               {t('nav.categories')}
             </Button>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
